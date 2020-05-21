@@ -1,15 +1,15 @@
 import { IAction } from "./../actions/index";
 import { AppEvents } from "./../types/index";
 
-const initialState: IState = {
-  age: 1234,
-  name: "",
-};
-
 export interface IState {
   age: number;
   name: string;
 }
+
+const initialState: IState = {
+  age: 1234,
+  name: "",
+};
 
 export const reducer = (state: IState = initialState, action: IAction) => {
   switch (action.type) {

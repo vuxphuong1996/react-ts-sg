@@ -6,5 +6,6 @@ const reducers = combineReducers({
 });
 
 export type IAppState = ReturnType<typeof reducers>;
+// export type AppDispatch = typeof store.dispatch
 
 export const store = createStore(reducers);

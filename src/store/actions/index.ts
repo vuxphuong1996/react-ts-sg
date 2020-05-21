@@ -1,32 +1,34 @@
 import { AppEvents } from "../types";
 
-interface ActionType<> {
-  type: string;
-  payload: number | string;
+export interface IAction {
+  type: AppEvents;
+  payload?: string | number | object;
 }
 
-const makeAction = <T, P>(opt: {type: T, payload: P}) => {
-  return opt;
-};
-
-
-
-export const SetName = makeAction<AppEvents.SET_NAME, string>(
-  AppEvents.SET_NAME
-);
-export const SetAge = makeAction<string, number>({ type: AppEvents.SET_AGE, payload: 78 }:);
-
-
-interface IStringMap<T> {
-  [key: string]: T;
+const makeAction = <T extends AppEvents, P>(type: T, payload: P) => {
+  console.log(payload)
+  return {
+    type,
+    payload
+  }
 }
+// const makeAction = (opt: IAction) => {
+//   return opt;
+// };
 
-type IAnyFunction = (...args: any[]) => any;
-type IActionUnion<A extends IStringMap<IAnyFunction>> = ReturnType<A[keyof A]>;
+// const SetAge = (opt: IAction) => {
+//   return { type: AppEvents.SET_AGE, payload: 78 };
+// };
 
-const actions = {
-  SetName,
-  SetAge,
-};
+export const SetAge = makeAction<AppEvents.SET_AGE, number>( AppEvents.SET_AGE, 68);
 
-export type IAction = IActionUnion<typeof actions>;
+
+// function action(type, payload = {}) {
+//   return {type, ...payload}
+// }
+
+// export const user = {
+//   request: login => action(USER[REQUEST], {login}),
+//   success: (login, response) => action(USER[SUCCESS], {login, response}),
+//   failure: (login, error) => action(USER[FAILURE], {login, error}),
+// }
