@@ -1,5 +1,5 @@
-import { IAction } from "./../actions/index";
-import { AppEvents } from "./../types/index";
+import { IAction } from './../actions/index';
+import { AppEvents } from './../types/index';
 
 export interface IState {
   age: number;
@@ -8,7 +8,7 @@ export interface IState {
 
 const initialState: IState = {
   age: 1234,
-  name: "",
+  name: ''
 };
 
 export const appReducer = (state = initialState, action: IAction) => {

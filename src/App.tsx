@@ -1,7 +1,7 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { IAppState } from "./store/reducers";
-import { SetAge, SetName } from "./store/actions";
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { IAppState } from './store/reducers';
+import { SetAge, SetName } from './store/actions';
 
 const App: React.FC = () => {
   const { age, name } = useSelector((state: IAppState) => state.app);
@@ -12,7 +12,7 @@ const App: React.FC = () => {
   };
 
   const onClickName = () => {
-    dispatch(SetName("bem"));
+    dispatch(SetName('bem'));
   };
 
   return (

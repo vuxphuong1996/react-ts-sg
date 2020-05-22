@@ -1,9 +1,9 @@
-import { AppEvents } from "../types";
+import { AppEvents } from '../types';
 
 export const makeAction = <T extends AppEvents, P>(type: T) => (payload: P) => {
   return {
     type,
-    payload,
+    payload
   };
 };
 
@@ -20,7 +20,7 @@ type IActionUnion<A extends IStringMap<IAnyFunction>> = ReturnType<A[keyof A]>;
 
 const actions = {
   SetAge,
-  SetName,
+  SetName
 };
 //get type for argument action of reducer
 export type IAction = IActionUnion<typeof actions>;

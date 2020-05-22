@@ -1,9 +1,9 @@
-import { takeLatest } from "redux-saga/effects";
+import { takeLatest } from 'redux-saga/effects';
 
 function* watchConsoleHello() {
-  console.log(" Hey from saga");
+  console.log(' Hey from saga');
 }
 
 export function* rootSaga() {
-  yield takeLatest("HELLO", watchConsoleHello);
+  yield takeLatest('HELLO', watchConsoleHello);
 }
