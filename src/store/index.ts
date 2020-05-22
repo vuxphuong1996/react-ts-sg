@@ -1,11 +1,12 @@
 import { createStore, combineReducers } from "redux";
-import { reducer as appReducer } from "./reducers";
+import { reducer as appReducer, IState } from "./reducers";
 
-const reducers = combineReducers({
+export interface IAppState {
+  app: IState;
+}
+
+const reducers = combineReducers<IAppState>({
   app: appReducer,
 });
-
-export type IAppState = ReturnType<typeof reducers>;
-// export type AppDispatch = typeof store.dispatch
 
 export const store = createStore(reducers);

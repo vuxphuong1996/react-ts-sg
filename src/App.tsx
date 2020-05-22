@@ -1,35 +1,32 @@
 import React, { useEffect, Dispatch } from "react";
-import { connect } from "react-redux";
+import { connect, useSelector, useDispatch } from "react-redux";
 import { compose } from "redux";
-import { SetAge } from "./store/actions";
+import { SetAge, SetName } from "./store/actions";
 import { IAppState } from "./store";
+// import { IState } from "./store/reducers";
 
-interface IProps {
-  age: number;
-  onClick(): void;
-}
+const App: React.FC = () => {
+  const { age, name } = useSelector((state: IAppState) => state.app);
+  const dispatch = useDispatch();
 
-const App: React.FC<IProps> = ({ age, onClick }) => {
+  const onClick = () => {
+    dispatch(SetAge(50));
+  };
+
+  const onClickName = () => {
+    dispatch(SetName("bembem"));
+  };
+
   return (
     <div>
       age: {age}
+      age: {name}
       <div>
         <button onClick={onClick}>Add</button>
+        <button onClick={onClickName}>Add name</button>
       </div>
     </div>
   );
 };
 
-const mapStateToProps = (state: IAppState) => {
-  return {
-    age: state.app.age,
-  };
-};
-
-const mapDispatchToProps = (dispatch: Dispatch<any>) => {
-  return {  
-    onClick: () => dispatch(SetAge),
-  };
-};
-
-export default compose(connect(mapStateToProps, mapDispatchToProps))(App);
+export default App;

@@ -1,34 +1,27 @@
 import { AppEvents } from "../types";
 
-export interface IAction {
-  type: AppEvents;
-  payload?: string | number | object;
-}
-
-const makeAction = <T extends AppEvents, P>(type: T, payload: P) => {
-  console.log(payload)
+const makeAction = <T extends AppEvents, P>(type: T) => (payload: P) => {
   return {
     type,
-    payload
-  }
+    payload,
+  };
+};
+
+export const SetName = makeAction<AppEvents.SET_NAME, string>(
+  AppEvents.SET_NAME
+);
+
+export const SetAge = makeAction<AppEvents.SET_AGE, number>(AppEvents.SET_AGE);
+
+interface IStringMap<T> {
+  [key: string]: T;
 }
-// const makeAction = (opt: IAction) => {
-//   return opt;
-// };
+type IAnyFunction = (...args: any[]) => any;
+type IActionUnion<A extends IStringMap<IAnyFunction>> = ReturnType<A[keyof A]>;
 
-// const SetAge = (opt: IAction) => {
-//   return { type: AppEvents.SET_AGE, payload: 78 };
-// };
-
-export const SetAge = makeAction<AppEvents.SET_AGE, number>( AppEvents.SET_AGE, 68);
-
-
-// function action(type, payload = {}) {
-//   return {type, ...payload}
-// }
-
-// export const user = {
-//   request: login => action(USER[REQUEST], {login}),
-//   success: (login, response) => action(USER[SUCCESS], {login, response}),
-//   failure: (login, error) => action(USER[FAILURE], {login, error}),
-// }
+const actions = {
+  SetAge,
+  SetName,
+};
+//get type for argument action of reducer
+export type IAction = IActionUnion<typeof actions>;
