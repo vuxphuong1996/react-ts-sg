@@ -1,17 +1,16 @@
 import { AppEvents } from "../types";
 
-const makeAction = <T extends AppEvents, P>(type: T) => (payload: P) => {
+export const makeAction = <T extends AppEvents, P>(type: T) => (payload: P) => {
   return {
     type,
     payload,
   };
 };
 
+export const SetAge = makeAction<AppEvents.SET_AGE, number>(AppEvents.SET_AGE);
 export const SetName = makeAction<AppEvents.SET_NAME, string>(
   AppEvents.SET_NAME
 );
-
-export const SetAge = makeAction<AppEvents.SET_AGE, number>(AppEvents.SET_AGE);
 
 interface IStringMap<T> {
   [key: string]: T;

@@ -1,24 +1,9 @@
-import { IAction } from "./../actions/index";
-import { AppEvents } from "./../types/index";
-
-export interface IState {
-  age: number;
-  name: string;
+import { combineReducers } from "redux";
+import { appReducer, IState } from "./appReducer";
+export interface IAppState {
+  app: IState;
 }
 
-const initialState: IState = {
-  age: 1234,
-  name: "",
-};
-
-export const reducer = (state = initialState, action: IAction) => {
-  switch (action.type) {
-    case AppEvents.SET_AGE:
-      return { ...state, age: action.payload };
-
-    case AppEvents.SET_NAME:
-      return { ...state, name: action.payload };
-    default:
-      return state;
-  }
-};
+export const rootReducers = combineReducers<IAppState>({
+  app: appReducer,
+});

@@ -1,9 +1,7 @@
-import React, { useEffect, Dispatch } from "react";
-import { connect, useSelector, useDispatch } from "react-redux";
-import { compose } from "redux";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { IAppState } from "./store/reducers";
 import { SetAge, SetName } from "./store/actions";
-import { IAppState } from "./store";
-// import { IState } from "./store/reducers";
 
 const App: React.FC = () => {
   const { age, name } = useSelector((state: IAppState) => state.app);
@@ -14,7 +12,7 @@ const App: React.FC = () => {
   };
 
   const onClickName = () => {
-    dispatch(SetName("bembem"));
+    dispatch(SetName("bem"));
   };
 
   return (
